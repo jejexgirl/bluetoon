@@ -1,0 +1,12 @@
+{
+  "name": "bluetoon-portfolio",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "BlueToon video-editor portfolio with a private dashboard. Zero dependencies.",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "start": "node server/main.mjs",
+    "test": "node --test test/*.test.mjs"
+  }
+}

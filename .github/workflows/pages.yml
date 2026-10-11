@@ -1,0 +1,55 @@
+name: Build and publish the site
+
+on:
+  push:
+    branches: [main, master]
+    paths: ["data/site.json", "public/**", "admin/**", "scripts/**", "server/validate.mjs", "server/youtube.mjs", "server/security.mjs", ".github/workflows/pages.yml"]
+  schedule:
+    - cron: "17 */6 * * *"   # refresh view counts every 6 hours
+  workflow_dispatch:
+
+permissions:
+  contents: write   # lets the refresh step save titles and view counts
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Create data/site.json on the first run
+        run: node scripts/seed.mjs
+      - name: Read titles, logos and view counts from YouTube
+        run: node scripts/refresh.mjs
+        continue-on-error: true
+        env:
+          YT_API_KEY: ${{ secrets.YT_API_KEY }}
+      - name: Save what was found
+        run: |
+          git config user.name "bluetoon-bot"
+          git config user.email "bluetoon-bot@users.noreply.github.com"
+          git add data public/uploads
+          if ! git diff --cached --quiet; then
+            git commit -m "Update video details and view counts"
+            git pull --rebase origin "${GITHUB_REF_NAME}" || git rebase --abort || true
+            git push || true
+          fi
+      - name: Build the site
+        run: node scripts/build.mjs
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4

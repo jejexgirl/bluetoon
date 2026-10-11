@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BlueToon | Video Editor</title>
+<meta name="description" content="BlueToon is a video editor with 8+ years of experience cutting YouTube content. Watch real projects, see the channels worked with, and get in touch.">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="theme-color" content="#060b1a">
+<meta property="og:title" content="BlueToon | Video Editor">
+<meta property="og:description" content="8+ years of YouTube editing. Watch real projects without leaving the page.">
+<link rel="icon" href="assets/bluetoon-logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&family=Cairo:wght@400;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script src="js/boot.js"></script>
+</head>
+<body>
+<a class="skip" href="#work">Skip to projects</a>
+<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+<div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+<div class="ghost" id="ghost" aria-hidden="true" hidden><span class="ghost-num" id="ghostNum"></span><span class="ghost-label">views and counting</span></div>
+
+<header class="nav" id="nav">
+  <a class="logo" href="#top" aria-label="Back to top">
+    <span class="logo-mark" aria-hidden="true"><img class="logo-img" data-logo src="assets/bluetoon-logo.jpg" alt="" width="40" height="40"></span>
+    <span class="logo-word" data-brandword>Blue<b>Toon</b></span>
+  </a>
+  <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Open menu"><span></span><span></span></button>
+  <nav class="nav-links" id="navLinks" aria-label="Primary">
+    <a href="#clients">Channels</a>
+    <a href="#work">Work</a>
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a class="nav-cta" href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="hero" aria-labelledby="heroTitle">
+    <div class="timeline" aria-hidden="true">
+      <div class="track t1"><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="track t2"><i></i><i></i><i></i><i></i></div>
+      <div class="track t3"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="track t4"><i></i><i></i><i></i></div>
+      <div class="playhead"><span></span></div>
+    </div>
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow" id="heroTagline"></p>
+        <h1 id="heroTitle"><span class="h-blue"></span><span class="h-toon"></span></h1>
+        <p class="hero-line" id="heroLine"></p>
+        <div class="years" aria-label="Years of experience">
+          <strong><span id="yearsNum">8</span><sup>+</sup></strong>
+          <span>years of experience<br>behind the timeline</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#work">Watch the work</a>
+          <a class="btn btn-ghost" href="#contact">Hire me</a>
+        </div>
+      </div>
+      <div class="portrait" aria-hidden="true">
+        <span class="ring r1"></span><span class="ring r2"></span>
+        <span class="vf tl"></span><span class="vf tr"></span><span class="vf bl"></span><span class="vf br"></span>
+        <img data-logo src="assets/bluetoon-logo.jpg" alt="" width="420" height="420">
+        <span class="rec"><i></i>REC <b id="tc">00:00:00:00</b></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="clients" aria-labelledby="clientsTitle">
+    <div class="wrap">
+      <header class="section-head reveal">
+        <p class="eyebrow">Channels I've worked with</p>
+        <h2 id="clientsTitle">Featured channels</h2>
+        <p class="lede">YouTube channels whose videos I have edited. They belong to their creators; the work shown here is mine.</p>
+      </header>
+      <div class="client-grid" id="clientGrid"></div>
+    </div>
+  </section>
+
+  <section class="section" id="work" aria-labelledby="workTitle">
+    <div class="wrap">
+      <header class="section-head reveal">
+        <p class="eyebrow">Selected projects</p>
+        <h2 id="workTitle">Watch the work</h2>
+        <p class="lede">Real videos. Click any one to play it right here.</p>
+      </header>
+      <div class="filters reveal" id="filters" role="group" aria-label="Filter projects by channel" hidden></div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section class="section" id="services" aria-labelledby="servicesTitle">
+    <div class="wrap">
+      <header class="section-head reveal">
+        <p class="eyebrow">What I do</p>
+        <h2 id="servicesTitle">Editing services</h2>
+      </header>
+      <div class="services" id="services"></div>
+    </div>
+  </section>
+
+  <section class="section" id="about" aria-labelledby="aboutTitle">
+    <div class="wrap about">
+      <header class="section-head reveal">
+        <p class="eyebrow">About</p>
+        <h2 id="aboutTitle">The person behind the cuts</h2>
+      </header>
+      <div class="about-copy reveal" id="aboutCopy"></div>
+    </div>
+  </section>
+
+  <section class="section contact" id="contact" aria-labelledby="contactTitle">
+    <div class="wrap">
+      <header class="section-head reveal">
+        <p class="eyebrow">Contact</p>
+        <h2 id="contactTitle">Let's make your next video</h2>
+        <p class="lede">Send a message with a link to your channel and what you need. Email is the fastest way to reach me.</p>
+      </header>
+      <ul class="contact-list reveal" id="contactList"></ul>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-in">
+    <a class="logo" href="#top" aria-label="Back to top"><span class="logo-mark" aria-hidden="true"><img class="logo-img" data-logo src="assets/bluetoon-logo.jpg" alt="" width="40" height="40"></span><span class="logo-word" data-brandword>Blue<b>Toon</b></span></a>
+    <p class="fine">&copy; <span id="year"></span> <span id="footBrand">BlueToon</span>. Featured channels and videos belong to their respective owners.</p>
+    <div class="social" id="footerSocial"></div>
+  </div>
+</footer>
+
+<div class="modal" id="modal" hidden>
+  <div class="dialog" id="dialog" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
+    <div class="dialog-bar">
+      <h3 id="modalTitle"></h3>
+      <button class="close" id="modalClose" type="button" aria-label="Close video"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
+    </div>
+    <div class="frame"><div id="player"></div></div>
+    <div class="dialog-foot">
+      <span id="modalChannel"></span>
+      <a id="modalWatch" href="#" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/config.js"></script>
+<script src="js/app.js"></script>
+<script src="js/gate.js"></script>
+</body>
+</html>
