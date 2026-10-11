@@ -39,7 +39,7 @@ jobs:
         run: |
           git config user.name "bluetoon-bot"
           git config user.email "bluetoon-bot@users.noreply.github.com"
-          git add data public/uploads
+          git add -A data public
           if ! git diff --cached --quiet; then
             git commit -m "Update video details and view counts"
             git pull --rebase origin "${GITHUB_REF_NAME}" || git rebase --abort || true
